@@ -1,0 +1,124 @@
+
+   1.添加四个按键，两个文本框。添加CommonDialog控件
+
+??2. 从"工程"菜单中选择"引用"栏；选择Microsoft?Excel?9.0?Object?Library（EXCEL2000），然后选择"确定"
+
+    Dim xlApp As Excel.Application '定义EXCEL类
+    Dim xlBook As Excel.Workbook '定义工件簿类
+    Dim xlsheet As Excel.Worksheet '定义工作表类
+    
+    Dim xlApp1 As Excel.Application '定义EXCEL类
+    Dim xlBook1 As Excel.Workbook '定义工件簿类
+    Dim xlsheet1 As Excel.Worksheet '定义工作表类
+    Dim openStatus As Integer
+Sub main()
+    openStatus = 0
+End Sub
+    
+    
+Private Sub Command1_Click()    '建立一个按钮对象
+  CommonDialog1.Filter = "ALL Files(*.*)|*.*|elcel(*.xlsx)|*.xlsx"
+   CommonDialog1.ShowOpen  '调用打开文件对话框
+  
+    If CommonDialog1.FileName <> "" Then  '当选中文件不为空时
+       
+        
+        Text1.Text = CommonDialog1.FileName
+
+    End If
+
+End Sub
+
+Private Sub Command2_Click()
+   CommonDialog1.ShowOpen  '调用打开文件对话框
+    
+    If CommonDialog1.FileName <> "" Then  '当选中文件不为空时
+
+        Text2.Text = CommonDialog1.FileName
+
+    End If
+End Sub
+
+
+Private Sub Command3_Click() '打开EXCEL过程
+
+
+    If Dir(Text1.Text) <> "" Then '判断EXCEL是否存在
+        Set xlApp = CreateObject("Excel.Application") '创建EXCEL应用类
+      '  xlApp.Visible = True '设置EXCEL可见
+         xlApp.Visible = False '设置EXCEL不可见
+        Set xlBook = xlApp.Workbooks.Open(Text1.Text) '打开EXCEL工作簿
+        Set xlsheet = xlBook.Worksheets(1) '打开EXCEL工作表
+        xlsheet.Activate '激活工作表
+      
+      '  xlBook.RunAutoMacros (xlAutoOpen) '运行EXCEL中的启动宏
+openStatus = 1
+        
+        
+    Else: Print
+
+        MsgBox ("EXCEL11不存在")
+    End If
+    
+    If Dir(Text2.Text) <> "" Then '判断EXCEL是否存在
+        Set xlApp1 = CreateObject("Excel.Application") '创建EXCEL应用类
+     '   xlApp1.Visible = True '设置EXCEL可见
+         xlApp1.Visible = False '设置EXCEL不可见
+        Set xlBook1 = xlApp1.Workbooks.Open(Text2.Text) '打开EXCEL工作簿
+        Set xlsheet1 = xlBook1.Worksheets(1) '打开EXCEL工作表
+        xlsheet1.Activate '激活工作表
+      
+      '  xlBook.RunAutoMacros (xlAutoOpen) '运行EXCEL中的启动宏
+openStatus = 2
+        
+        
+    Else: Print
+        MsgBox ("EXCEL不存在")
+    End If
+    
+    
+
+    Dim cnt As Integer
+
+      For i = 2 To xlsheet1.UsedRange.Rows.count
+        cnt = 0
+        For j = 2 To xlsheet.UsedRange.Rows.count
+            If xlsheet.Cells(j, 3) = xlsheet1.Cells(i, 3) Then
+                cnt = cnt + 1
+                If xlsheet.Cells(j, 9) <> xlsheet1.Cells(i, 9) Then
+                    xlsheet1.Cells(i, 9).Interior.ColorIndex = 3
+                End If
+            End If
+
+        Next j
+        If cnt = 0 Then
+        xlsheet1.Cells(i, 3).Interior.ColorIndex = 3
+
+'        xlsheet1.Cells(i, 6) = "存在多个"
+'        ElseIf cnt = 0 Then
+'        xlsheet1.Cells(i, 6).Interior.ColorIndex = 6
+'        xlsheet1.Cells(i, 6) = "不存在"
+        End If
+      Next i
+    
+     xlApp1.Visible = True '设置EXCEL可见
+       
+End Sub
+Private Sub Command4_Click()
+    Unload Me
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+    If openStatus > 0 Then '由VB关闭EXCEL
+
+        xlBook.Close (True) '关闭EXCEL工作簿
+        xlApp.Quit '关闭EXCEL
+         Set xlApp = Nothing '释放EXCEL对象
+    End If
+
+    If openStatus > 1 Then '由VB关闭EXCEL
+        xlBook1.Close (True) '关闭EXCEL工作簿
+        xlApp1.Quit '关闭EXCEL
+        Set xlApp1 = Nothing '释放EXCEL对象
+    End If
+End Sub
