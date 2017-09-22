@@ -1,0 +1,40 @@
+错误消息（MS Comm 控件）
+
+下表列出 MSComm 控件可以捕获的错误：
+常数 值 描述 
+comInvalidPropertyValue 380 无效属性值 
+comSetNotSupported 383 属性为只读 
+comGetNotSupported 394 属性为只读 
+
+comPortOpen 8000 端口打开时操作不合法 
+  8001 超时值必须大于 0 
+
+comPortInvalid 8002 无效端口号 
+  8003 属性只在运行时有效 
+  8004 属性在运行时为只读 
+
+comPortAlreadyOpen 8005 端口已经打开 
+  8006 设备标识符无效或不支持该标识符 
+  8007 不支持设备的波特率 
+  8008 指定的字节大小无效 
+  8009 缺省参数错误 
+  8010 硬件不可用（被其它设备锁定） 
+  8011 函数不能分配队列 
+
+comNoOpen 8012 设备没有打开 
+  8013 设备已经打开 
+  8014 不能使用 comm 通知 
+
+comSetCommStateFailed 8015 不能设置 comm 状态 
+  8016 不能设置 comm 事件屏蔽 
+
+comPortNotOpen 8018 仅当端口打开时操作才有效 
+  8019 设备忙 
+comReadError 8020 读 comm 设备错误 
+comDCBError 8021 为该端口检索设备控制块时的内部错误
+
+
+使用方法：在代码中加入这段
+         If Err.Number = 8002 Then
+            MsgBox "无效的端口号", vbOKOnly, "信息"   '弹出消息对话框
+               
