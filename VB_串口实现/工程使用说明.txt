@@ -1,0 +1,22 @@
+
+本人利用Visual basic 6.0编写
+
+在对象窗口编辑对象：
+
+串口选择：combox-comPort
+波特率：combox-comBaud
+校验位：combox-comVerify
+数据位：combox-comNumBit
+指示灯：shape-shpSerial
+打开串口：button-btnOpenSerial
+接收区：textbox-txtReceive
+发送区：textbox-txtSend
+消息区: textbox-txtMsg
+清空接收区:button-btnClearReceive
+清空发送区:button-btnClearSend
+清空消息区:button-btnClearMsg
+
+
+本工程还存在一个BUG：
+
+热插拔串口时不能识别串口，需要重启软件。目前也没找到很好的办法解决。
