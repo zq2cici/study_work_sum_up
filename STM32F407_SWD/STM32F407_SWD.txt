@@ -1,0 +1,62 @@
+Configuration	STM32F407_SWD
+STM32CubeMX 	4.24.0
+Date	03/22/2018
+MCU	STM32F407VETx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SPI1	Full-Duplex Master	SPI1_MISO	PB4
+SPI1	Full-Duplex Master	SPI1_MOSI	PB5
+SPI1	Full-Duplex Master	SPI1_SCK	PB3
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM5	Internal Clock	TIM5_VS_ClockSourceINT	VP_TIM5_VS_ClockSourceINT
+TIM5	Input Capture direct mode	TIM5_CH2	PA1
+USART1	Asynchronous	USART1_RX	PA10
+USART1	Asynchronous	USART1_TX	PA9
+USB_OTG_FS	Device_Only	USB_OTG_FS_DM	PA11
+USB_OTG_FS	Device_Only	USB_OTG_FS_DP	PA12
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+24	PA1	TIM5_CH2	
+35	PB0	GPIO_Output	
+68	PA9	USART1_TX	
+69	PA10	USART1_RX	
+70	PA11	USB_OTG_FS_DM	
+71	PA12	USB_OTG_FS_DP	
+89	PB3	SPI1_SCK	
+90	PB4	SPI1_MISO	
+91	PB5	SPI1_MOSI	
+95	PB8	GPIO_Output	
+96	PB9	GPIO_Output	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : STM32F407_SWD
+Project Folder : F:\张智强工作项目\逆变器\逆变核心小板测试\STM32F407_SWD\STM32F407_SWD
+Toolchain / IDE : MDK-ARM V5
+Firmware Package Name and Version : STM32Cube FW_F4 V1.19.0
+
+
+Code Generation Settings : 
+STM32Cube Firmware Library Package : Copy all used libraries into the project folder
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : Balanced Size/Speed
+
+
+
+
+
+
