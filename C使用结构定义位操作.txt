@@ -1,0 +1,12 @@
+typedef union 
+{
+	u16  all;
+	struct
+		{
+			u16 beep			:1;
+			u16 iover			:1;
+			u16 iover_lock		:1;
+			u16 flash_empty		:1;
+			u16 reserve			:12;
+		}bits;
+}flag;
